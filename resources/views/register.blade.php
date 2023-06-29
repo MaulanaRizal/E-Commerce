@@ -43,6 +43,18 @@
                                 </div>
                             @endif
                             
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+
                             <form class="user" accept="{{ url('register') }}" method="POST">
                                 @csrf
                                 <div class="form-group row">
@@ -66,7 +78,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="re-password" name="re-password" placeholder="Repeat Password">
+                                            id="password_confirmation" name="password_confirmation" placeholder="Repeat Password">
                                     </div>
                                 </div>
                                 
@@ -107,9 +119,9 @@
     <script src="{{ url('startbootstrap/js/sb-admin-2.min.js') }}"></script>
 
     <script>
-        $(document).ready(function(){
-            $('.alert-success').delay(1000).fadeOut('slow')
-        })
+        // $(document).ready(function(){
+        //     $('.alert-success').delay(1000).fadeOut('slow')
+        // })
     </script>
 
 </body>
