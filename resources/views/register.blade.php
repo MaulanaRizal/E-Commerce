@@ -86,19 +86,21 @@
                                     Register Account
                                 </button>
                                 <hr>
-                                <a href="{{ url('login.html') }}" class="btn btn-google btn-user btn-block">
+                                {{-- 
+                                    <a href="{{ url('login.html') }}" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
                                 </a>
                                 <a href="{{ url('login.html') }}" class="btn btn-facebook btn-user btn-block">
                                     <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
                                 </a>
+                                <hr>
+                                --}}
                             </form>
-                            <hr>
                             <div class="text-center">
                                 <a class="small" href="forgot-password.html">Forgot Password?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="login.html">Already have an account? Login!</a>
+                                <a class="small" href="{{ url('login') }}">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>
@@ -117,7 +119,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ url('startbootstrap/js/sb-admin-2.min.js') }}"></script>
-
+    
     <script>
         // $(document).ready(function(){
         //     $('.alert-success').delay(1000).fadeOut('slow')

@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function register()
-    {
+    public function register(){
         return view('register');
     }
     
@@ -29,7 +29,35 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         
         $user->save();
+
         return back()->with('success','Register Successfuly');
         
+    }
+
+    public function login(){
+        return View('login');
+    }
+
+    public function loginPost(Request $request){
+
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $data = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+
+        if(Auth::attempt($data)){
+            $request->session()->regenerate();
+
+            redirect('admin');
+        }else{
+
+            return back()->with('failed','Email atau Password salah');
+
+        }
     }
 }
