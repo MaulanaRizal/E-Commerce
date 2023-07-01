@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StorageController;
 use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,10 @@ Route::post('/register',[AuthController::class,'registerPost'])->name('register'
 Route::get('/login',[AuthController::class,'login'])->name('login');
 Route::post('/login',[AuthController::class,'loginPost'])->name('login');
 
-Route::prefix('admin')->middleware([AuthMiddleware::class])->group(function(){
-    Route::get('/',[AdminController::class,'index'])->name('dashboard');
+Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+
+Route::prefix('auth')->middleware('auth')->group(function(){
+    Route::get('/',[DashboardController::class,'index'])->name('dashboard');
+    
+    Route::get('/storage',[StorageController::class,'index'])->name('storage');
 });

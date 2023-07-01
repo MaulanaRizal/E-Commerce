@@ -16,7 +16,8 @@ class AuthController extends Controller
     public function registerPost(Request $request){
 
         $validate = $request->validate([
-            'firstName' => 'required|max:255',
+            'firstName' => 'required|max:50',
+            'lastName' => 'max:50',
             'email'=>'required|max:255|unique:users,email',
             'password'=>'required|min:6|max:25|confirmed',
             'password_confirmation'=>'required'
@@ -25,12 +26,13 @@ class AuthController extends Controller
         $user = new User();
 
         $user->first_name = $request->firstName;
+        $user->last_name = $request->lastName;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         
         $user->save();
 
-        return back()->with('success','Register Successfuly');
+        return redirect('login')->with('success','Register Successfuly');
         
     }
 
@@ -53,11 +55,16 @@ class AuthController extends Controller
         if(Auth::attempt($data)){
             $request->session()->regenerate();
 
-            redirect('admin');
+            return redirect()->intended('auth');
         }else{
 
             return back()->with('failed','Email atau Password salah');
 
         }
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
     }
 }
