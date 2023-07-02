@@ -21,7 +21,7 @@ class StorageFactory extends Factory
             'quantity' => fake()->numberBetween(10,100),
             'code_stock' => fake()->numerify('STCK-####'),
             'date_stock' => fake()->dateTimeInInterval('-1 week', '0 days'),
-            'expired_date' => fake()->dateTimeInInterval('+3 days', '+6 month')
+            'expired_date' => fake()->dateTimeInInterval('+3 days', '+6 months')
         ];
     }
 }

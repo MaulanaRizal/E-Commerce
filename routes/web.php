@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StorageController;
 use App\Http\Middleware\AuthMiddleware;
+use App\Models\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -34,6 +35,9 @@ Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 Route::prefix('auth')->middleware('auth')->group(function(){
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
-    
+
     Route::get('/storage',[StorageController::class,'index'])->name('storage');
+    //Route::get('/storage/{i}',[StorageController::class,'index'])->name('storage');
+    Route::get('/storage/LoadDataStorage',[StorageController::class,'LoadDataStorage'])->name('LoadDataStorage');
+
 });

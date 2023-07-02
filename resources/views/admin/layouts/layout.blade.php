@@ -71,7 +71,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-
+    <a href="{{ url('delete') }}"></a>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ url('startbootstrap/vendor/jquery/jquery.min.js') }}"></script>
