@@ -29,20 +29,38 @@
         
     }
 
+    .notification{
+        position: fixed;
+        right: 23px;
+        width: 400px;
+        z-index: 9999;
+        display: none;
+}
+    
 </style>
 @endsection
 
 @section('content')
-
-<a href="#" class="btn btn-primary float-right mt-4">Add New Product</a>
+@if(Session::has('success'))
+<div class="alert alert-success notification">
+    <span><b>Succes!</b> {{ Session::get('success') }}</span>
+</div>
+@endif
 <h1 class="h3 mb-2 text-gray-800">Storage</h1>
-<p class="mt-1">
-    The following is a table list of products stored in the warehouse.
-</p>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Storage</li>
+    </ol>
+</nav>
 
 
 <div class="card">
     <div class="card-body">
+        <a href="{{ route('FormInput') }}" class="btn btn-primary float-right mb-4">Add New Stock</a>
+        <p class="mt-1">
+            The following is a table list of products stored in the warehouse.
+        </p>
         {{-- <a href="#" class="btn btn-primary">Add New Product</a>
         <input type="text" class="form-control mb-3 float-right" style="width:200px" placeholder="search..."> --}}
         <table class="table" id="storageTable" width=100%>
@@ -85,5 +103,11 @@
                 {data:'delete'},
             ]
         });
+        $(document).ready(()=>{
+            $('.notification').fadeIn('slow').delay(4000).fadeOut('slow');
+
+        }
+
+        )
     </script>
 @endsection

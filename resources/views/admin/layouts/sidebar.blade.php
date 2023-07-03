@@ -41,7 +41,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('auth/storage') }}">
+                <a class="nav-link" href="{{ route('storages') }}">
                     <span><i class="fas fa-fw fa-warehouse"></i>Storage</span>
                 </a>
             </li>

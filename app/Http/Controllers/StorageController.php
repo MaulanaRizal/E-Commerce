@@ -14,7 +14,7 @@ class StorageController extends Controller
             'storages' => Storage::paginate(10)->withQueryString(),
         ];
 
-        return view('admin.pages.storage',['data'=>$data]);
+        return view('admin.pages.storages.storage',['data'=>$data]);
     }
 
     public function LoadDataStorage(){
@@ -26,5 +26,15 @@ class StorageController extends Controller
             return '<a href="'.$row->id.'">Edit</a> <a href="'.$row->id.'">Delete</a>';
         })->rawColumns(['delete'])
         ->toJson();
+    }
+
+    public function FormInput(){
+        return view('admin.pages.storages.insert');
+    }
+
+    public function Insert(Request $request){
+
+        return redirect()->route('storages')->with('success','Data stock saved successfully');
+
     }
 }

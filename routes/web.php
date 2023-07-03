@@ -36,8 +36,9 @@ Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 Route::prefix('auth')->middleware('auth')->group(function(){
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
 
-    Route::get('/storage',[StorageController::class,'index'])->name('storage');
-    //Route::get('/storage/{i}',[StorageController::class,'index'])->name('storage');
+    Route::get('/storage',[StorageController::class,'index'])->name('storages');
     Route::get('/storage/LoadDataStorage',[StorageController::class,'LoadDataStorage'])->name('LoadDataStorage');
+    Route::get('/storage/input',[StorageController::class,'FormInput'])->name('FormInput');
+    Route::post('/storage/input',[StorageController::class,'Insert'])->name('insert');
 
 });
