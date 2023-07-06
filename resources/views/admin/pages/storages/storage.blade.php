@@ -91,11 +91,12 @@
 
     <script>
         $("#storageTable").DataTable({
+
             processing : true,
             serverSide : true,
             ajax: '{{ route('LoadDataStorage') }}',
             columns:[
-                {data:'product_name'},
+                {data:'product_name',},
                 {data:'quantity'},
                 {data:'code_stock'},
                 {data:'expired_date'},
@@ -103,8 +104,9 @@
                 {data:'delete'},
             ]
         });
+
         $(document).ready(()=>{
-            $('.notification').fadeIn('slow').delay(4000).fadeOut('slow');
+            $('.notification').fadeIn('slow').delay(8000).fadeOut('slow');
 
         }
 

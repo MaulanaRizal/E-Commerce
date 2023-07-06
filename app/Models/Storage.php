@@ -15,6 +15,7 @@ class Storage extends Model
         'code_stock',
         'date_stock',
         'expired_date',
+        'date_stock',
     ];
 
     protected $hidden = [

@@ -1,5 +1,25 @@
 @extends('admin.layouts.layout')
 
+@section('styles')
+<style>
+    .initial-code{
+        width: 110px;
+        margin-left: 8px;
+    }
+    .form-group .input-code-stock{
+        display: inline-flex;
+        flex-flow: initial
+    }
+    @media only screen and (max-width: 600px) {
+        .form-group .text-right
+        {
+            text-align:left !important;
+        }
+
+    }
+</style>
+@endsection
+
 @section('content')
 
 <h1 class="h3 mb-2 text-gray-800">Input Stock</h1>
@@ -14,28 +34,46 @@
 
 <div class="card">
     <div class="card-body container">
-        {{-- <div class="text-center">
-            <img src="{{ url('startbootstrap/img/undraw_heavy_box.svg') }}" class="img-fluid px-3 px-sm-4 mt-3 mb-4" width="500px" alt="">
-        </div> --}}
+        @if(Session::has('failed'))
+        <div class="alert alert-danger">
+            {{ Session::get('failed') }}
+        </div>
+        @endif
         <form action="{{ route('insert') }}" method="POST">
             @csrf
             <div class="form-group row mt-4">
-                <label for="staticEmail" class="col-sm-4 col-form-label text-right">Product : </label>
-                <input type="text" class="form-control bg-light border-0 small col-sm-6" placeholder="product name..." >
-                
+                <label for="productName" class="col-sm-4 col-form-label text-right">Product : </label>
+                <input name="productName" id="productName" type="text" class="form-control bg-light border-0 small col-sm-6" placeholder="product name..." >
+                @error('productName')
+                    <span class="text-danger small text-danger small col-12 col-md-3 offset-md-4">{{ $message }}</span>
+                @enderror
             </div>
             <div class="form-group row mt-4">
-                <label for="staticEmail" class="col-sm-4 col-form-label text-right">Qty : </label>
-                <input type="number" class="form-control bg-light border-0 small col-sm-2" value="0">
+                <label for="quantity" class="col-sm-4 col-form-label text-right">Qty : </label>
+                <input type="number" name="quantity" id="quantity" class="form-control bg-light border-0 small col-sm-6" value="0">
+                @error('quantity')
+                    <span class="text-danger small col-12">{{ $message }}</span>
+                @enderror
             </div>
             <div class="form-group row mt-4">
-                <label for="staticEmail" class="col-sm-4 col-form-label text-right">Code Stock : </label>
-                <span class="mt-2">STCK — </span>
-                <input type="text" class="form-control bg-light border-0 small col-sm-3 ml-2" placeholder="code..." >
+                <label for="codeStock" class="col-sm-4 col-form-label text-right">Code Stock : </label>
+                <div class="col-sm-6 input-code-stock">
+                    <span class="mt-2 initial-code">STCK—</span>
+                    <input type="text" name="codeStock" id="codeStock" class="form-control bg-light border-0 small ml-2" placeholder="code..." >
+                </div>
+                <div class="">
+                    
+                </div>
+                @error('codeStock')
+                    <span class="text-danger small text-danger small col-12 col-md-3 offset-md-4">{{ $message }}</span>
+                @enderror
             </div>
             <div class="form-group row mt-4">
-                <label for="staticEmail" class="col-sm-4 col-form-label text-right">Expired Date : </label>
-                <input type="date" class="form-control bg-light border-0 small col-sm-6">
+                <label for="expiredDate" class="col-sm-4 col-form-label text-right">Expired Date : </label>
+                <input type="date" name="expiredDate" id="expiredDate" class="form-control bg-light border-0 small col-sm-6">
+                @error('expiredDate')
+                    <span class="text-danger small text-danger small col-12 col-md-3 offset-md-4">{{ $message }}</span>
+                @enderror
             </div>
             <div class="form-group row mt-4">
                 <span class="col-sm-4"></span>
