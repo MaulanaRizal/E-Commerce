@@ -20,6 +20,17 @@
     <!-- Custom styles for this template-->
     <link href="{{ url('startbootstrap/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    <style>
+        .notification{
+            position: fixed;
+            right: 23px;
+            width: 400px;
+            z-index: 9999;
+            top: 60px;
+            display: none;
+        }
+    </style>
+
     @yield('styles')
     
 </head>
@@ -28,6 +39,17 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
+
+        @if(Session::has('success'))
+        <div class="alert alert-success notification">
+            <span><b>Succes!</b> {{ Session::get('success') }}</span>
+        </div>
+        @endif
+        @if (Session::has('failed'))
+        <div class="alert alert-danger notification">
+            <span><b>Failed</b> {{ Session::get('failed') }}</span>
+        </div>
+        @endif
 
         @include('admin.layouts.sidebar')
 
@@ -72,26 +94,31 @@
     </a>
 
     <a href="{{ url('delete') }}"></a>
-
+    
     <!-- Bootstrap core JavaScript-->
     <script src="{{ url('startbootstrap/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ url('startbootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
+    
     <!-- Core plugin JavaScript-->
     <script src="{{ url('startbootstrap/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
+    
     <!-- Custom scripts for all pages-->
     <script src="{{ url('startbootstrap/js/sb-admin-2.min.js') }}"></script>
-
+    
     <!-- Page level plugins -->
     <script src="{{ url('startbootstrap/vendor/chart.js/Chart.min.js') }}"></script>
-
+    
     <!-- Page level custom scripts -->
     <script src="{{ url('startbootstrap/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ url('startbootstrap/js/demo/chart-pie-demo.js') }}"></script>
-
+    
     @yield('scripts')
-
+    <script>
+        $(document).ready(()=>{
+            $('.notification').fadeIn('slow').delay(5000).fadeOut('slow');
+        });
+    </script>
+    
 </body>
 
 </html>

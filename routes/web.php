@@ -38,7 +38,9 @@ Route::prefix('auth')->middleware('auth')->group(function(){
 
     Route::get('/storage',[StorageController::class,'index'])->name('storages');
     Route::get('/storage/LoadDataStorage',[StorageController::class,'LoadDataStorage'])->name('LoadDataStorage');
-    Route::get('/storage/input',[StorageController::class,'FormInput'])->name('FormInput');
-    Route::post('/storage/input',[StorageController::class,'Insert'])->name('insert');
+    Route::get('/storage/input',[StorageController::class,'ViewInsert'])->name('FormInputStorage');
+    Route::post('/storage/input',[StorageController::class,'Insert'])->name('insertStock');
+    Route::get('/storage/edit/{id}',[StorageController::class,'ViewEdit'])->name('FormEditStorage');
+    Route::post('/storage/edit/{id}',[StorageController::class,'Edit'])->name('editStock');
 
 });

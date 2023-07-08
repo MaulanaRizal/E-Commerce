@@ -29,23 +29,15 @@
         
     }
 
-    .notification{
-        position: fixed;
-        right: 23px;
-        width: 400px;
-        z-index: 9999;
-        display: none;
 }
     
 </style>
 @endsection
 
 @section('content')
-@if(Session::has('success'))
-<div class="alert alert-success notification">
-    <span><b>Succes!</b> {{ Session::get('success') }}</span>
-</div>
-@endif
+
+
+
 <h1 class="h3 mb-2 text-gray-800">Storage</h1>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -57,7 +49,7 @@
 
 <div class="card">
     <div class="card-body">
-        <a href="{{ route('FormInput') }}" class="btn btn-primary float-right mb-4">Add New Stock</a>
+        <a href="{{ route('FormInputStorage') }}" class="btn btn-primary float-right mb-4">Add New Stock</a>
         <p class="mt-1">
             The following is a table list of products stored in the warehouse.
         </p>
@@ -96,20 +88,15 @@
             serverSide : true,
             ajax: '{{ route('LoadDataStorage') }}',
             columns:[
-                {data:'product_name',},
-                {data:'quantity'},
-                {data:'code_stock'},
-                {data:'expired_date'},
-                {data:'date_stock'},
+                {data:'product_name',name:'product_name'},
+                {data:'quantity',name:'quantity'},
+                {data:'code_stock',name:'code_stock'},
+                {data:'expired_date',name:'expired_date'},
+                {data:'date_stock',name:'date_stock'},
                 {data:'delete'},
-            ]
+            ],
+            order: [[4, 'desc']]
         });
-
-        $(document).ready(()=>{
-            $('.notification').fadeIn('slow').delay(8000).fadeOut('slow');
-
-        }
-
-        )
+        
     </script>
 @endsection
