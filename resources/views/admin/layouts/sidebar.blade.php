@@ -35,14 +35,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{ route('product') }}">
                     <span><i class="fas fa-fw fa-box"></i>Products</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('storages') }}">
-                    <span><i class="fas fa-fw fa-warehouse"></i>Storage</span>
                 </a>
             </li>
 

@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        \App\Models\Storage::factory(100)->create();
+        \App\Models\Product::factory(100)->create();
 
     }
 }
