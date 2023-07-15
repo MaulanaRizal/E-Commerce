@@ -1,6 +1,9 @@
 @extends('admin.layouts.layout')
 
 @section('styles')
+
+<link href="{{ url('assets\css\uploadImage.css') }}" rel="stylesheet" type="text/css">
+
 <style>
     .initial-code{
         width: 110px;
@@ -11,6 +14,19 @@
         flex-flow: initial;
         
     }
+    .frame{
+        margin: auto;
+        width: 300px;
+        height: 200px;;
+        background-color: #f3f3f3;
+        
+    }
+    .frame #imagePreview{
+        margin: auto;
+        width: 300px;
+        height: 200px;;
+        object-fit: cover;
+    }
     @media only screen and (max-width: 600px) {
         .form-group .text-right
         {
@@ -19,6 +35,7 @@
 
     }
 </style>
+
 @endsection
 
 @section('content')
@@ -34,14 +51,25 @@
 
 
 <div class="card">
-    <div class="card-body container">
+    <div class="card-body container" style="margin-top: 30px;">
         {{-- @if(Session::has('failed'))
         <div class="alert alert-danger">
             {{ Session::get('failed') }}
         </div>
         @endif --}}
-        <form action="{{ route('product-insert') }}" method="POST">
+        <form method="POST" action="{{ route('product-insert') }}"  enctype="multipart/form-data">
             @csrf
+            <div class="frame">
+                <img src="{{ url('assets/images/upload.jpg') }}" alt="Preview" id="imagePreview">
+            </div>
+            <div class="form-group row mt-4">
+                <label for="productName" class="col-sm-4 col-form-label text-right">Image Product : </label>
+                <input type="file" name="image" class="bg-light border-0 col-sm-6" id="imageInput">
+                @error('image')
+                    <span class="text-danger small text-danger small col-12 col-md-3 offset-md-4">{{ $message }}</span>
+                @enderror
+            </div>
+
             <div class="form-group row mt-4">
                 <label for="productName" class="col-sm-4 col-form-label text-right">Product : </label>
                 <input name="productName" id="productName" type="text" class="form-control bg-light border-0 small col-sm-6" placeholder="product name..." >
@@ -49,6 +77,7 @@
                     <span class="text-danger small text-danger small col-12 col-md-3 offset-md-4">{{ $message }}</span>
                 @enderror
             </div>
+
             <div class="form-group row mt-4">
                 <label for="productName" class="col-sm-4 col-form-label text-right">Price : </label>
                 <input name="price"  id="price" type="text" class="form-control bg-light border-0 small col-sm-6" placeholder="product price..." >
@@ -90,7 +119,19 @@
 @endsection
 
 @section('scripts')
-    <script>
-
-    </script>
+    {{-- <script src="{{ url('assets/js/uploadImage.js') }}"></script> --}}
+<script>
+    $(document).ready(function() {
+        $('#imageInput').change(function() {
+            var file = this.files[0];
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+                $('#imagePreview').attr('src', e.target.result).show();
+            }
+            
+            reader.readAsDataURL(file);
+        });
+    });
+</script>
 @endsection

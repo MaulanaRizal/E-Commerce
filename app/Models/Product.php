@@ -17,6 +17,7 @@ class Product extends Model
         'date_stock',
         'expired_date',
         'date_stock',
+        'image_product'
     ];
 
     protected $hidden = [

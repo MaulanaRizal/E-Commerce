@@ -16,6 +16,19 @@
         flex-flow: initial;
         
     }
+    .frame{
+        margin: auto;
+        width: 300px;
+        height: 200px;;
+        background-color: #f3f3f3;
+        
+    }
+    .frame #imagePreview{
+        margin: auto;
+        width: 300px;
+        height: 200px;;
+        object-fit: cover;
+    }
     @media only screen and (max-width: 600px) {
         .form-group .text-right
         {
@@ -40,8 +53,22 @@
 <div class="card">
     <div class="card-body container">
 
-        <form action="{{ route('product-edit',['id'=>$product['id']]) }}" method="POST">
+        <form action="{{ route('product-edit',['id'=>$product['id']]) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            <div class="frame">
+                @if($product['image_product'])
+                <img src="{{ asset('product/'.$product['image_product']) }}" alt="Preview" id="imagePreview">
+                @else
+                <img src="{{ asset('assets/images/upload.jpg') }}" alt="Preview" id="imagePreview">
+                @endif
+            </div>
+            <div class="form-group row mt-4">
+                <label for="productName" class="col-sm-4 col-form-label text-right">Image Product : </label>
+                <input type="file" name="image" class="bg-light border-0 col-sm-6" id="imageInput">
+                @error('image')
+                    <span class="text-danger small text-danger small col-12 col-md-3 offset-md-4">{{ $message }}</span>
+                @enderror
+            </div>
             <div class="form-group row mt-4">
                 <label for="productName" class="col-sm-4 col-form-label text-right">Product : </label>
                 <input value="{{ $product['product_name'] }}" name="productName" id="productName" type="text" class="form-control bg-light border-0 small col-sm-6" placeholder="product name..." >
@@ -93,5 +120,18 @@
 @endsection
 
 @section('scripts')
-    
+<script>
+    $(document).ready(function() {
+        $('#imageInput').change(function() {
+            var file = this.files[0];
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+                $('#imagePreview').attr('src', e.target.result).show();
+            }
+            
+            reader.readAsDataURL(file);
+        });
+    });
+</script>
 @endsection

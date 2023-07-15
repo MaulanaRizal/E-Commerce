@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProductController extends Controller
@@ -59,13 +60,21 @@ class ProductController extends Controller
 
     public function insert(Request $request){
         $request['codeStock'] = 'STCK-'.$request['codeStock'];
+        
         $request->validate([
             'productName' => 'required|max:50',
-            'price' => 'required|number',
+            'price' => 'required|integer',
             'quantity' => 'required|integer',
-            'codeStock' => 'required|max:10|unique:products,code_stock',
-            'expiredDate' => 'nullable|date'
+            'codeStock' => 'required|unique:products,code_stock',
+            'expiredDate' => 'nullable|date',
+            'image' => 'image|file|max:2048'
         ]);
+        
+        $fileName = null;
+        if($request->file('image')){
+            $fileName = time()."-".$request->codeStock.str_replace("image/",".",$request->file('image')->getClientMimeType());
+            $request->file('image')->storeAs('product',$fileName);
+        }
 
         $product = new Product();
 
@@ -75,8 +84,10 @@ class ProductController extends Controller
         $product->code_stock = $request->codeStock;
         $product->expired_date = $request->expiredDate;
         $product->date_stock = date('Y-m-d H:i:s');
+        $product->image_product = $fileName;
 
         $product->save();
+
         return redirect()->route('product')->with('success','Data stock saved successfully.');
         
     }
@@ -91,22 +102,38 @@ class ProductController extends Controller
     }
 
     public function update($id, Request $request){
-            $request->validate([
-                'productName' => 'required|max:50',
-                'price' => 'required|integer',
-                'quantity' => 'required|integer',
-                'expiredDate' => 'nullable|date'
-            ]);
-            
-            $stock = Product::find($id);
-            $stock->product_name = $request->productName;
-            $stock->price = $request->price;
-            $stock->quantity = $request->quantity;
-            $stock->expired_date = $request->expiredDate;
-            $stock->date_stock = date('Y-m-d H:i:s');
-            $stock->save();
-            $stock->touch();
-            return redirect()->route('product')->with('success','Data stock updated.');
+
+        $request->validate([
+            'productName' => 'required|max:50',
+            'price' => 'required|integer',
+            'quantity' => 'required|integer',
+            'expiredDate' => 'nullable|date',
+            'image' => 'image|file|max:2048'
+        ]);
+
+        $product = Product::find($id);
+        $fileName = null;
+
+        if($request->file('image')){
+            $fileName = time()."-".$request->codeStock.str_replace("image/",".",$request->file('image')->getClientMimeType());
+            $oldFile = 'product/'.$product->image_product;
+            if(Storage::exists($oldFile)){
+                Storage::delete($oldFile);
+            }
+            $request->file('image')->storeAs('product',$fileName);
+        }
+        
+        $product->product_name = $request->productName;
+        $product->price = $request->price;
+        $product->quantity = $request->quantity;
+        $product->expired_date = $request->expiredDate;
+        $product->date_stock = date('Y-m-d H:i:s');
+        $product->image_product = $fileName;
+        
+        $product->save();
+        $product->touch();
+        
+        return redirect()->route('product')->with('success','Data stock updated.');
 
     }
 
@@ -114,6 +141,12 @@ class ProductController extends Controller
         DB::beginTransaction();
         try{
             $model = Product::find($id);
+
+            $oldFile = 'product/'.$model->image_product;
+            if(Storage::exists($oldFile)){
+                Storage::delete($oldFile);
+            }
+
             $model->delete();
 
             DB::commit();

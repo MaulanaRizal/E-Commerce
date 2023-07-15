@@ -36,16 +36,7 @@ Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 Route::prefix('auth')->middleware('auth')->group(function(){
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
-
-    // STORAGE - Group Menu
-    // Route::get('/storage',[StorageController::class,'index'])->name('storages');
-    // Route::get('/storage/LoadDataStorage',[StorageController::class,'LoadDataStorage'])->name('LoadDataStorage');
-    // Route::get('/storage/input',[StorageController::class,'ViewInsert'])->name('FormInputStorage');
-    // Route::post('/storage/input',[StorageController::class,'Insert'])->name('insertStock');
-    // Route::get('/storage/edit/{id}',[StorageController::class,'ViewEdit'])->name('FormEditStorage');
-    // Route::post('/storage/edit/{id}',[StorageController::class,'Edit'])->name('editStock');
-    // Route::get('/storage/delete/{id}',[StorageController::class,'Delete'])->name('deleteStock');
-
+    
     // PRODUCT - Group Menu
     Route::get('/product',[ProductController::class,'index'])->name('product');
     Route::get('/product/loadDataProduct',[ProductController::class,'loadData'])->name('loadProduct');
