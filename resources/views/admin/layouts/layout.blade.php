@@ -18,8 +18,8 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{ url('startbootstrap/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
+    <link href="{{ url('startbootstrap/css/sb-admin-2.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <style>
         .notification{
             position: fixed;
@@ -86,15 +86,7 @@
         <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <a href="{{ url('delete') }}"></a>
-    
     <!-- Bootstrap core JavaScript-->
     <script src="{{ url('startbootstrap/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ url('startbootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -105,14 +97,11 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ url('startbootstrap/js/sb-admin-2.min.js') }}"></script>
     
-    <!-- Page level plugins -->
-    <script src="{{ url('startbootstrap/vendor/chart.js/Chart.min.js') }}"></script>
-    
-    <!-- Page level custom scripts -->
-    <script src="{{ url('startbootstrap/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ url('startbootstrap/js/demo/chart-pie-demo.js') }}"></script>
-    
+
+    @stack('scripts')
+
     @yield('scripts')
+    
     <script>
         $(document).ready(()=>{
             $('.notification').fadeIn('slow').delay(5000).fadeOut('slow');

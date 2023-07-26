@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CashierController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StorageController;
 use App\Http\Middleware\AuthMiddleware;
@@ -37,7 +38,7 @@ Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 Route::prefix('auth')->middleware('auth')->group(function(){
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
     
-    // PRODUCT - Group Menu
+    // PRODUCT - Menu
     Route::get('/product',[ProductController::class,'index'])->name('product');
     Route::get('/product/loadDataProduct',[ProductController::class,'loadData'])->name('loadProduct');
     Route::get('/product/input',[ProductController::class,'input'])->name('product-input');
@@ -45,4 +46,10 @@ Route::prefix('auth')->middleware('auth')->group(function(){
     Route::get('/product/edit/{id}',[ProductController::class,'edit'])->name('product-edit');
     Route::post('/product/edit/{id}',[ProductController::class,'update'])->name('product-update');
     Route::get('/product/delete/{id}',[ProductController::class,'delete'])->name('product-delete');
+
+    // CASHIER - Menu
+    Route::get('cashier',[CashierController::class,'index'])->name('cashier');
+    Route::get('cashier/getProduct',[CashierController::class,'getProduct'])->name('cashier-getProduct');
+    Route::get('cashier/getProduct/{query}',[CashierController::class,'getProduct'])->name('cashier-getProduct');
+    
 });

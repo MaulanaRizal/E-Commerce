@@ -29,7 +29,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{ route('cashier') }}">
                     <span><i class="fas fa-fw fa-cash-register"></i>Cashier</span>
                 </a>
             </li>
