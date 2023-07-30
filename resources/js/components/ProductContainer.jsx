@@ -1,39 +1,39 @@
 import React from "react";
-import { ReactDOM,Component } from "react";
-import './ProductCard'
-import { render } from "react-dom";
+import ReactDOM from 'react-dom/client';
+import ProductCard from "./ProductCard";
 
 
-class App extends ProductContainer{
-    constructor(){
-        super();
-    }
-}
-
-render(){
+function ProductContainer(props){
+    console.log(props.list)
+    const BaseUrl = window.location.origin;
     return(
-        <p>Hallo</p>
+        props.list.map(item=>(
+            <ProductCard key={item.id} name={item.product_name} price={item.price} code='STCK-indo' image={item.image_product==null?BaseUrl+"/assets/images/no-image.jpg":`${BaseUrl}/product/${item.image_product}`}/>
+        ))
     )
 }
 
-const container = document.getElementById("productList");
-const BaseUrl = window.location.origin;
-
-if(container){
-    const Root = ReactDOM.createRoot(container);
-    let products = [];
-    $.ajax({
-        url:`${BaseUrl}/auth/cashier/getProduct`,
-        type:'GET',
-        success: function(response){
-            if(response.length>0){
-                products = response;
-            }
-        }
-    });
-    
-    console.log(products);
-}
 
 export default ProductContainer;
+
+let productList = []
+$(document).ready(()=>{
+    const BaseUrl = window.location.origin;
+    $.ajax({
+        url:`${BaseUrl}/auth/cashier/getProduct`,
+        contentType: 'application/json',
+        type:'GET',
+        success: (result)=>{
+            const container = document.getElementById("productList");
+            const Root = ReactDOM.createRoot(container);
+            // console.log(result)
+            Root.render(<ProductContainer list={result}  />);
+        },
+        error: (error)=>{
+            alert(`Ups!, Somthing wrong with server. Please contact Admin for infrom the problem.\n${error}`)
+        }
+    });
+})
+
+
 

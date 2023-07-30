@@ -94,7 +94,8 @@
 
 @endsection
 
-@push('script')
+@push('scripts')
+<script src="{{ asset('assets/js/cashier.js') }}"></script>
 @endpush
 
 @section('scripts')
