@@ -17,6 +17,7 @@ import './bootstrap';
 import './components/Example';
 import './components/ProductCard';
 import './components/ProductContainer';
+import './components/OrderItem';
 
 
 

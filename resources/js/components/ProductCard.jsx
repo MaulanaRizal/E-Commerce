@@ -19,25 +19,5 @@ function ProductCard(props){
 }
 
 export default ProductCard;
-// let productList = []
-// $(document).ready(()=>{
-//     const BaseUrl = window.location.origin;
-//     $.ajax({
-//         url:`${BaseUrl}/auth/cashier/getProduct`,
-//         contentType: 'application/json',
-//         type:'GET',
-//         success: (result)=>{
-//             const container = document.getElementById("productList");
-//             const Root = ReactDOM.createRoot(container);
-//             // console.log(result)
-//             result.map(item=>(
-//                 Root.render(<ProductCard item={result} key={item.id} name={"Beras Dua Lele"} code={"123456"} price={"100.000"}  />)
-//             ))
-//         },
-//         error: (error)=>{
-//             alert(`Ups!, Somthing wrong with server. Please contact Admin for infrom the problem.\n${error}`)
-//         }
-//     });
-// })
 
 

@@ -40,44 +40,16 @@
         <div class="card-body">
             <p class="mt-1">Orders</p>
             <hr>
-            <div class="order-list">
+            <div class="order-list" id="orderList">
 
                 <div class="order-item mb-2">
+                    <div class="product">
+                        <p class="mb-0">Name Product </p>
+                        <span>Rp 60.000</span>
+                    </div>
                     <input type="number" class="quantity float-right form-control" value="1">
-                    <p class="mb-0">Name Product </p>
-                    <span>Rp 60.000</span>
                 </div>
-                <div class="order-item mb-2">
-                    <input type="number" class="quantity float-right form-control" value="1">
-                    <p class="mb-0">Name Product </p>
-                    <span>Rp 60.000</span>
-                </div>
-                <div class="order-item mb-2">
-                    <input type="number" class="quantity float-right form-control" value="1">
-                    <p class="mb-0">Name Product </p>
-                    <span>Rp 60.000</span>
-                </div>
-                <div class="order-item mb-2">
-                    <input type="number" class="quantity float-right form-control" value="1">
-                    <p class="mb-0">Name Product </p>
-                    <span>Rp 60.000</span>
-                </div>
-                <div class="order-item mb-2">
-                    <input type="number" class="quantity float-right form-control" value="1">
-                    <p class="mb-0">Name Product </p>
-                    <span>Rp 60.000</span>
-                </div>
-                <div class="order-item mb-2">
-                    <input type="number" class="quantity float-right form-control" value="1">
-                    <p class="mb-0">Name Product </p>
-                    <span>Rp 60.000</span>
-                </div>
-                <div class="order-item mb-2">
-                    <input type="number" class="quantity float-right form-control" value="1">
-                    <p class="mb-0">Name Product </p>
-                    <span>Rp 60.000</span>
-                </div>
-
+                
             </div>
             <hr>
             <div class="result-order">

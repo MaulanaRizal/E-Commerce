@@ -4,7 +4,6 @@ import ProductCard from "./ProductCard";
 
 
 function ProductContainer(props){
-    console.log(props.list)
     const BaseUrl = window.location.origin;
     return(
         props.list.map(item=>(

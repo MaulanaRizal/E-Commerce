@@ -80,7 +80,15 @@
     overflow: auto;
 }
 
-.order-list .quantity{
+.order-list .order-item {
+    display: flex;
+}
+
+.order-list .order-item .product{
+    width: 100%;
+}
+
+.order-list .order-item .quantity{
     width: 90px;
 }
 
@@ -118,6 +126,7 @@ background: url("../images/shop2.jpg") !important;
     height: 150px;
     object-fit: cover;
 }
+
 
 @media only screen and (max-width: 600px) {
     .form-group .text-right
