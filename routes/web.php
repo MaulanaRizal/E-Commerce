@@ -50,6 +50,6 @@ Route::prefix('auth')->middleware('auth')->group(function(){
     // CASHIER - Menu
     Route::get('cashier',[CashierController::class,'index'])->name('cashier');
     Route::get('cashier/getProduct',[CashierController::class,'getProduct'])->name('cashier-getProduct');
-    Route::get('cashier/getProduct/{query}',[CashierController::class,'getProduct'])->name('cashier-getProduct');
+    //Route::post('cashier/getProduct/',[CashierController::class,'getProduct'])->name('cashier-getProduct');
     
 });

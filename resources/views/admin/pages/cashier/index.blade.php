@@ -20,9 +20,9 @@
         <div class="card ">
             <div class="card-body">
                 <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" id="inputProduct" value="" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                        <button class="btn btn-primary" type="button">
+                        <button class="btn btn-primary" id="searchProduct" type="button">
                             <i class="fas fa-search fa-sm"></i>
                         </button>
                     </div>
@@ -30,7 +30,6 @@
                 <hr>
                     <div class="row product-list" id="productList">
                     </div>
-                <hr>
             </div>
         </div>
     </div>
@@ -73,7 +72,11 @@
 @section('scripts')
     
     <script>
-        const url = "{{ asset('assets/images/no-image.jpg') }}";
+        $(document).ready(()=>{
+
+
+
+        })
     </script>
 
 @endsection
