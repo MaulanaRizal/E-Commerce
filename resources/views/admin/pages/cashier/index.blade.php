@@ -18,18 +18,7 @@
 
     <div class="col-md-8">
         <div class="card ">
-            <div class="card-body">
-                <div class="input-group">
-                    <input type="text" id="inputProduct" value="" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" id="searchProduct" type="button">
-                            <i class="fas fa-search fa-sm"></i>
-                        </button>
-                    </div>
-                </div>
-                <hr>
-                    <div class="row product-list" id="productList">
-                    </div>
+            <div class="card-body" id="productContainer">
             </div>
         </div>
     </div>
@@ -73,8 +62,6 @@
     
     <script>
         $(document).ready(()=>{
-
-
 
         })
     </script>

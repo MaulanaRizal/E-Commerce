@@ -28,21 +28,7 @@ class CashierController extends Controller
     }
 
     public function getProduct(Request $request){
-
-        $temp = $request->all();
-        if($request->has('search')){
-            $searchTerm = $temp['search'];
-            $data = Product::where(function ($query) use ($searchTerm){
-                $columns = ['product_name','code_stock'];
-
-                foreach($columns as $column){
-                    $query->orWhere($column,'LIKE','%'.$searchTerm.'%');
-                }
-
-            })->orderBy('id','desc')->get();
-        }else{
-            $data = Product::orderBy('id','desc')->get();
-        }
+        $data = Product::orderBy('id','desc')->get();
         $data = response()->json($data);
         return $data;
     }
