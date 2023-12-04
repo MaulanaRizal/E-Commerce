@@ -70,14 +70,16 @@
     object-fit: cover;
 }
 
-.product-list{
-    overflow: auto;
-    height: 450px;
-}
+
 
 .order-list{
     height: 300px;
     overflow: auto;
+}
+
+.order-list :hover{
+    cursor: pointer;
+    background-color: #efefef;
 }
 
 .order-list .order-item {
@@ -104,6 +106,9 @@
 .product-list .product-item:hover{
     outline-style: outset;
     outline-color: #a4b5ec;
+}
+.quantity{
+    margin: auto 5px;
 }
 
 .bg-login-image {

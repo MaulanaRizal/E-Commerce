@@ -8,16 +8,9 @@ function OrderItem(props){
                 <p className="mb-0">Name Product </p>
                 <span>Rp 80.000</span>
             </div>
-            <input type="number" className="quantity float-right form-control" min={0} defaultValue="1"/>
-
+            <input type="number" className=" quantity float-right form-control" min={0} defaultValue="1"/>
         </div>
     )
 }
 
 export default OrderItem;
-
-$(document).ready(()=>{
-    const container = document.getElementById("orderList");
-    const Root = ReactDOM.createRoot(container);
-    Root.render(<OrderItem/>);
-})

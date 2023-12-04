@@ -1,0 +1,19 @@
+.product-container{
+    height: 800px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.product-list{
+    overflow: auto;
+    height: 680px;
+}
+
+.no-item{
+    color: #cecece;
+    text-align: center;
+}
+
+.btn-delete-order{
+    margin: 5px 0px;
+}
